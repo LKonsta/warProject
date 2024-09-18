@@ -85,7 +85,8 @@
             {
               "name": "runelord",
               "stats": [{"M":1},{"Ws":7},{"Bs":5},{"S":5},{"T":4}],
-              "cost": 120
+              "cost": 120,
+              "min" : 1
             }
           ],
           "Core units": [

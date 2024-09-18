@@ -1,14 +1,20 @@
 import { useState, useEffect } from 'react'
 
-import Rolls from './components/Rolls'
-import rollService from './services/rolls'
+//import Rolls from './components/Rolls'
+//import rollService from './services/rolls'
 
 import FullGame from './components/FullGame'
 
-const App = () => {
-  const [rolls, setRolls] = useState([])
-  const [newRolls, setNewRolls] = useState('')
+import armyService from './services/Armies'
 
+const App = () => {
+  
+  
+  
+  const [rolls, setRolls] = useState([])
+  {/*
+  
+  const [newRolls, setNewRolls] = useState('')
 
   const rollsHook = () => {
     rollService.getAll().then(initialRolls => {
@@ -38,12 +44,36 @@ const App = () => {
           setNewRolls('')
     })
   }
+  */}
+
+  const [armyData, setArmyData] = useState([])
+
+  const armyDataHook = () => {
+    armyService.getAll().then(initialArmyData => {
+      setArmyData(initialArmyData.forces[0].selections)
+      
+    })
+  }
+  useEffect(armyDataHook, [])
 
 
   return (
     <div>
-      <FullGame id="fullGame" width="1000" height="700" />
+      <FullGame id="fullGame" width="3000" height="2000" />
       <div>
+        <div>
+        {armyData.map(armyData =>
+          <div key={armyData.id}>
+            {armyData.name}
+            {console.log(armyData)}
+          </div>      
+        )}
+        </div>
+      
+      
+      
+        {/*
+        
         <li>
         {rolls.map(rolls =>
           <Rolls
@@ -62,6 +92,8 @@ const App = () => {
           />
           <button type="submit">roll</button>
         </form>
+
+        */}
       </div>
     </div>
   )
